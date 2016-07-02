@@ -1,0 +1,43 @@
+/*
+ * # Example-only CSS
+ * These styles are only related to the example layout. They probably shouldn’t
+ * be included in your project.
+ */
+body {
+  background: #fafffe;
+}
+
+.example {
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  color: #333a40;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+h1,h2,figcaption {
+  color: #111a20;
+  font-family: sans-serif;
+}
+
+figcaption {
+  margin-top: 0.25em;
+  font-size: 75%;
+}
+
+pre,code {
+  padding: 2px;
+  font-size: 87.5%;
+  background: #eee;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+pre {
+  max-width: 100%;
+  padding: 1em;
+  overflow-x: scroll;
+}

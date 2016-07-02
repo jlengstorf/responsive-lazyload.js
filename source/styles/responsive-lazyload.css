@@ -1,0 +1,35 @@
+.js--lazyload {
+  position: relative;
+  display: block;
+  background-color: #ddd;
+}
+
+.js--lazyload:not(img) {
+  height: 0;
+  padding-bottom: 50%;
+}
+
+/*
+ * To avoid setting explicit sizes, the lazyload class can be applied directly
+ * to the `img` tag. However, this causes the content to reflow (unless the 
+ * image is square) and may cause layout issues since it tries to set the image
+ * at 100% of its container width. Use at your own discretion.
+ */
+img.js--lazyload {
+  width: 100%;
+}
+
+.js--lazyload img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  transition: 150ms opacity linear;
+}
+
+.js--lazyload--loading img {
+  opacity: 0;
+}

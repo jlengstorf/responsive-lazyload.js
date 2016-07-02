@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <title>Demo: Responsive Lazyload w/Loading Animation</title>
+
+  <link rel="stylesheet" href="../dist/responsive-lazyload.min.css">
+  <link rel="stylesheet" href="css/example-only.css">
+  <style>
+
+    /* 
+     * Add a loading animation to lazyloaded images.
+     */
+    .js--lazyload--loading::before,.js--lazyload--loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      width: 60px;
+      height: 60px;
+      background-color: #BBBBBB;
+      border: 2px solid #BBBBBB;
+      border-radius: 50%;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .js--lazyload::before {
+      animation: loading 2s linear 0s infinite;
+    }
+
+    .js--lazyload::after {
+      animation: loading 2s linear -1s infinite;
+    }
+
+    @keyframes loading {
+      0% {
+        background-color: rgba(175, 175, 175, 0.95);
+        transform: translate(-50%, -50%) scale(0.1);
+        opacity: 1;
+      }
+
+      60% {
+        background-color: rgba(175, 175, 175, 0.5);
+      }
+
+      100% {
+        background-color: rgba(175, 175, 175, 0);
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* 
+     * NOTE: It’d probably be wise to hide the animation if JS is disabled.
+     * To do this, add a `no-js` class to the body element and remove it with
+     * JS once the DOM is ready, then uncomment this rule.
+     * /
+    .no-js .js--lazyload--loading {
+      display: none;
+    }
+    /**/
+
+  </style>
+</head>
+<body>
+
+  <div class="example">
+
+    <h1>Responsive Lazyload Examples w/Loading Animation</h1>
+
+    <nav>
+      <a href="https://github.com/jlengstorf/responsive-lazyload.js">Project source on GitHub</a> |
+      <a href="./index.html">Basic Examples</a> |
+      <a href="./loading-animation.html">Examples w/Loading Animation</a>
+    </nav>
+
+    <p>
+      View the page source to see the script initialization and the additional
+      styles required to add the CSS animation.
+    </p>
+
+    <p>
+      <strong>All photos by <a href="http://www.paintwithstars.com/">paint with stars photography</a>.</strong>
+    </p>
+
+    <p>
+      
+    </p>
+
+    <h2>Basic usage.</h2>
+
+    <div class="js--lazyload js--lazyload--loading">
+      <img alt="image description"
+           src="images/example@2x.jpg"
+           srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+           data-lazyload="images/example-300x150.jpg 300w,
+                          images/example-600x300.jpg 600w,
+                          images/example.jpg 690w,
+                          images/example@2x.jpg 1380w">
+    </div>
+
+    <p>
+      The simplest usage is <em>almost</em> plain ol’ markup you’d use anyways.
+    </p>
+
+    <pre>&#x3C;div class=&#x22;js--lazyload js--lazyload--loading&#x22;&#x3E;
+  &#x3C;img alt=&#x22;image description&#x22;
+       src=&#x22;images/example@2x.jpg&#x22;
+       srcset=&#x22;data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==&#x22;
+       data-lazyload=&#x22;images/example-300x150.jpg 300w,
+                      images/example-600x300.jpg 600w,
+                      images/example.jpg 690w,
+                      images/example@2x.jpg 1380w&#x22;&#x3E;
+&#x3C;/div&#x3E;</pre>
+
+    <p>
+      The key differences are:
+    </p>
+
+    <ul>
+      <li>The <code>img</code> tag is placed inside a wrapper with the <code>js--lazyload</code> and <code>js--lazyload--loading</code> classes.</li>
+      <li>The <code>srcset</code> attribute is set to a blank GIF (base-64 encoded to eliminate an extra request per image).</li>
+      <li>The images that we want used for <code>srcset</code> are instead placed in the <code>data-lazyload</code> attribute.</li>
+    </ul>
+
+    <p>
+      To enable lazyloading, include the following snippet just before your closing <code>&lt;/body&gt;</code> tag:
+    </p>
+
+    <pre>&#x3C;script src=&#x22;path/to/bower_components/responsive-lazyload/dist/responsive-lazyload.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+&#x3C;script&#x3E;
+  responsiveLazyload.lazyLoadImages();
+&#x3C;/script&#x3E;</pre>
+
+    <h2>Use with <code>figure</code> elements and other wrappers.</h2>
+
+    <figure>
+      <div class="js--lazyload js--lazyload--loading">
+        <img alt="image description"
+             src="images/example02@2x.jpg"
+             srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+             data-lazyload="images/example02-300x150.jpg 300w,
+                            images/example02-600x300.jpg 600w,
+                            images/example02.jpg 690w,
+                            images/example02@2x.jpg 1380w">
+      </div>
+      <figcaption>
+        You can also include lazyloaded images in <code>figure</code> elements.
+      </figcaption>
+    </figure>
+
+    <p>
+      The responsive image markup can be included inside other elements (e.g. <code>figure</code>) without issue. It <em>does</em> require an extra tag, unfortunately.
+    </p>
+
+    <pre>&#x3C;figure&#x3E;
+  &#x3C;div class=&#x22;js--lazyload js--lazyload--loading&#x22;&#x3E;
+    &#x3C;img alt=&#x22;image description&#x22;
+         src=&#x22;images/example02@2x.jpg&#x22;
+         srcset=&#x22;data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==&#x22;
+         data-lazyload=&#x22;images/example02-300x150.jpg 300w,
+                        images/example02-600x300.jpg 600w,
+                        images/example02.jpg 690w,
+                        images/example02@2x.jpg 1380w&#x22;&#x3E;
+  &#x3C;/div&#x3E;
+  &#x3C;figcaption&#x3E;
+    You can also include lazyloaded images in &#x3C;code&#x3E;figure&#x3C;/code&#x3E; elements.
+  &#x3C;/figcaption&#x3E;
+&#x3C;/figure&#x3E;</pre>
+
+    <h2>How to Handle Different Aspect Ratios</h2>
+
+    <div class="js--lazyload js--lazyload--loading"
+         style="padding-bottom: 66.67%">
+      <img alt="image description"
+           src="images/example03@2x.jpg"
+           srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+           data-lazyload="images/example03-300w.jpg 300w,
+                          images/example03-600w.jpg 600w,
+                          images/example03.jpg 690w,
+                          images/example03@2x.jpg 1380w">
+    </div>
+
+    <p>
+      By default, <code>responsiveLazyload.js</code> sets images to a 2:1 aspect ratio (<code>padding-bottom: 50%;</code> — figure this out by dividing the height by the width, e.g. <code>400h ÷ 800w = 0.5</code>).
+    </p>
+
+    <p>
+      To change the aspect ratio to match your image, divide the height by the width and add an inline style to the wrapper:
+    </p>
+
+    <pre>&#x3C;div class=&#x22;js--lazyload js--lazyload--loading&#x22;
+     <strong>style=&#x22;padding-bottom: 66.67%&#x22;</strong>&#x3E;
+  &#x3C;img alt=&#x22;image description&#x22;
+       src=&#x22;images/example03@2x.jpg&#x22;
+       srcset=&#x22;data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==&#x22;
+       data-lazyload=&#x22;images/example03-300w.jpg 300w,
+                      images/example03-600w.jpg 600w,
+                      images/example03.jpg 690w,
+                      images/example03@2x.jpg 1380w&#x22;&#x3E;
+&#x3C;/div&#x3E;</pre>
+
+    <h2>Images With Unknown Sizes</h2>
+
+    <img alt="image description"
+         class="js--lazyload js--lazyload--loading"
+         src="images/example04@2x.jpg"
+         srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+         data-lazyload="images/example04-300x150.jpg 300w,
+                        images/example04-600x300.jpg 600w,
+                        images/example04.jpg 690w,
+                        images/example04@2x.jpg 1380w">
+
+    <p>
+      To avoid setting explicit sizes, the lazyload class can be applied directly to the <code>img</code> tag.
+    </p>
+
+    <pre>&#x3C;img alt=&#x22;image description&#x22;
+     class=&#x22;js--lazyload js--lazyload--loading&#x22;
+     src=&#x22;images/example04@2x.jpg&#x22;
+     srcset=&#x22;data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==&#x22;
+     data-lazyload=&#x22;images/example04-300x150.jpg 300w,
+                    images/example04-600x300.jpg 600w,
+                    images/example04.jpg 690w,
+                    images/example04@2x.jpg 1380w&#x22;&#x3E;</pre>
+
+    <p>
+      <em>NOTE:</em> This approach causes the content to reflow (unless the image is square) and may cause layout issues since it tries to set the image at 100% of its container width. Use at your own discretion.
+    </p>
+
+  </div>
+
+
+  <script src="../dist/responsive-lazyload.min.js"></script>
+  <script>
+    responsiveLazyload.lazyLoadImages();
+  </script>
+</body>
+</html>

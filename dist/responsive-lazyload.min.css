@@ -1,0 +1,1 @@
+.js--lazyload{position:relative;display:block;background-color:#ddd}.js--lazyload:not(img){height:0;padding-bottom:50%}img.js--lazyload{width:100%}.js--lazyload img{position:absolute;top:0;left:0;display:block;height:100%;width:100%;opacity:1;transition:150ms opacity linear}.js--lazyload--loading img{opacity:0}

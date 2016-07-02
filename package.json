@@ -1,0 +1,42 @@
+{
+  "name": "responsive-lazyload",
+  "version": "0.1.0",
+  "description": "A tool to lazyload images in a responsive, lightweight way (with fallbacks for unsupported browsers).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "del dist/**/*",
+    "scripts": "webpack",
+    "styles": "cssmin source/styles/responsive-lazyload.css > dist/responsive-lazyload.min.css",
+    "preversion": "NODE_ENV=production npm run build && git add -A",
+    "postversion": "git push && git push --tags",
+    "build": "npm run clean && npm run scripts && npm run styles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jlengstorf/responsive-lazyload.js.git"
+  },
+  "keywords": [
+    "module",
+    "lazy load",
+    "lazyload",
+    "images",
+    "responsive",
+    "fallback",
+    "html5"
+  ],
+  "author": "Jason Lengstorf <jason@lengstorf.com> (@jlengstorf)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlengstorf/responsive-lazyload.js/issues"
+  },
+  "homepage": "https://github.com/jlengstorf/responsive-lazyload.js#readme",
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "cssmin": "^0.4.3",
+    "expose-loader": "^0.7.1",
+    "webpack": "^1.13.1"
+  }
+}
