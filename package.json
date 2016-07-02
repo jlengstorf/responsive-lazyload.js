@@ -8,8 +8,9 @@
     "clean": "del dist/**/*",
     "scripts": "webpack",
     "styles": "cssmin source/styles/responsive-lazyload.css > dist/responsive-lazyload.min.css",
+    "pages": "git checkout gh-pages && git merge master && git push && git checkout master",
     "preversion": "NODE_ENV=production npm run build && git add -A",
-    "postversion": "git push && git push --tags",
+    "postversion": "git push && git push --tags && npm run pages",
     "build": "npm run clean && npm run scripts && npm run styles"
   },
   "repository": {
