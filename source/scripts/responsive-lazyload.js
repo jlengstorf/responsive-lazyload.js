@@ -82,6 +82,10 @@ const removeLoadingClass = (image, loadingClass) => {
   image.parentNode.classList.remove(loadingClass);
 };
 
+/**
+ * Check if the browser supports `srcset`.
+ * @return {Boolean} `true` if supported; `false` if not
+ */
 const hasSrcsetSupport = () => {
   return 'srcset' in document.createElement('img');
 };
@@ -97,13 +101,13 @@ export function lazyLoadImages({
   loadingClass = "js--lazyload--loading",
   callback = () => {},
 } = {}) {
-  const toLoad = document.getElementsByClassName(containerClass);
+  const containers = document.getElementsByClassName(containerClass);
 
   // Before we do anything, check if the browser supports `srcset`
   if (!hasSrcsetSupport()) {
 
     // If not, remove the loading class and bail out.
-    for (let container of toLoad) {
+    for (let container of containers) {
       removeLoadingClass(container, loadingClass);
     }
 
@@ -111,7 +115,7 @@ export function lazyLoadImages({
   }
 
   // If we get here, `srcset` is supported and we can start processing things.
-  const images = [].map.call(toLoad, findImageElement);
+  const images = [].map.call(containers, findImageElement);
 
   // Create a custom event to trigger the event load.
   const lazyLoadEvent = new Event('lazyload-init');
