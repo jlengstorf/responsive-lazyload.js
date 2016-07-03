@@ -73,13 +73,26 @@ const loadImage = event => {
 };
 
 /**
- * Remove the loading class from the container element.
+ * Remove the loading class from the lazyload wrapper.
  * @param  {Element} image        the image being loaded
  * @param  {String}  loadingClass the class to remove
  * @return {Void}
  */
 const removeLoadingClass = (image, loadingClass) => {
-  image.parentNode.classList.remove(loadingClass);
+  let element = image;
+
+  /*
+   * Since there may be additional elements wrapping the image (e.g. a link),
+   * we run a loop to check the image’s ancestors until we either find the
+   * element with the loading class or hit the `body` element.
+   */
+  while (element.tagName.toLowerCase() !== 'body') {
+    if (element.classList.contains(loadingClass)) {
+      element.classList.remove(loadingClass);
+    } else {
+      element = element.parentNode;
+    }
+  }
 };
 
 /**
