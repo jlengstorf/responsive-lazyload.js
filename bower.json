@@ -1,7 +1,10 @@
 {
   "name": "responsive-lazyload",
   "description": "A JavaScript module to lazyload images in a responsive, lightweight way (with fallbacks for unsupported browsers).",
-  "main": "source/scripts/responsive-lazyload.js",
+  "main": [
+    "source/scripts/responsive-lazyload.js",
+    "source/styles/responsive-lazyload.css"
+  ],
   "authors": [
     "Jason Lengstorf <jason@lengstorf.com> (@jlengstorf)"
   ],
