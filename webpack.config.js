@@ -6,7 +6,7 @@ module.exports = {
   devtool: (isDev ? 'cheap-source-map' : 'source-map'),
   entry: {
     bundle: [
-      'babel-polyfill',
+      /*'babel-polyfill',*/
       './source/scripts/responsive-lazyload.browser.js',
     ]
   },
@@ -23,4 +23,7 @@ module.exports = {
       },
     ]
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
+  ],
 };
