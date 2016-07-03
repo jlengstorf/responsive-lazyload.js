@@ -5,13 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "del dist/**/*",
+    "start": "parallelshell 'npm run scripts:watch' 'npm run styles:watch'",
+    "prescripts": "del dist/**/*{.js,.map}",
     "scripts": "webpack",
+    "scripts:watch": "watch 'npm run scripts' source/scripts/",
+    "prestyles": "del dist/**/*.css",
     "styles": "cssmin source/styles/responsive-lazyload.css > dist/responsive-lazyload.min.css",
+    "styles:watch": "watch 'npm run styles' source/styles/",
     "pages": "git checkout gh-pages && git merge master && git push && git checkout master",
     "preversion": "NODE_ENV=production npm run build && git add -A",
     "postversion": "git push && git push --tags && npm run pages",
-    "build": "npm run clean && npm run scripts && npm run styles"
+    "build": "npm run scripts && npm run styles"
   },
   "repository": {
     "type": "git",
@@ -39,6 +43,9 @@
     "babel-preset-es2015": "^6.9.0",
     "cssmin": "^0.4.3",
     "expose-loader": "^0.7.1",
+    "live-reload": "^1.1.0",
+    "parallelshell": "^2.0.0",
+    "watch": "^0.19.1",
     "webpack": "^1.13.1"
   }
 }
