@@ -5,7 +5,10 @@ module.exports = {
   debug: isDev,
   devtool: (isDev ? 'cheap-source-map' : 'source-map'),
   entry: {
-    bundle: './source/scripts/responsive-lazyload.browser.js'
+    bundle: [
+      'babel-polyfill',
+      './source/scripts/responsive-lazyload.browser.js',
+    ]
   },
   output: {
     path: __dirname + '/dist',
