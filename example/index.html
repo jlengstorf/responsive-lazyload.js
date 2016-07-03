@@ -15,22 +15,22 @@
     <h1>Responsive Lazyload Examples</h1>
 
     <nav>
-      <a href="https://github.com/jlengstorf/responsive-lazyload.js">Project source on GitHub</a> |
-      <a href="./index.html">Basic Examples</a> |
-      <a href="./loading-animation.html">Examples w/Loading Animation</a>
+      <strong>Examples:</strong>
+      <a href="./index.html">Basic</a>
+      | <a href="./loading-animation.html">Loading Animation</a>
     </nav>
-
-    <p>
-      View the page source to see the script initialization and markup.
-    </p>
 
     <p>
       <strong>All photos by <a href="http://www.paintwithstars.com/">paint with stars photography</a>.</strong>
     </p>
 
+    <p>
+      
+    </p>
+
     <h2>Basic usage.</h2>
 
-    <div class="js--lazyload js--lazyload--loading">
+    <div class="js--lazyload">
       <img alt="image description"
            src="images/example@2x.jpg"
            srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -44,7 +44,7 @@
       The simplest usage is <em>almost</em> plain ol’ markup you’d use anyways.
     </p>
 
-    <pre>&#x3C;div class=&#x22;js--lazyload js--lazyload--loading&#x22;&#x3E;
+    <pre>&#x3C;div class=&#x22;js--lazyload&#x22;&#x3E;
   &#x3C;img alt=&#x22;image description&#x22;
        src=&#x22;images/example@2x.jpg&#x22;
        srcset=&#x22;data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==&#x22;
@@ -59,7 +59,7 @@
     </p>
 
     <ul>
-      <li>The <code>img</code> tag is placed inside a wrapper with the <code>js--lazyload</code> and <code>js--lazyload--loading</code> classes.</li>
+      <li>The <code>img</code> tag is placed inside a wrapper with the <code>js--lazyload</code> classes.</li>
       <li>The <code>srcset</code> attribute is set to a blank GIF (base-64 encoded to eliminate an extra request per image).</li>
       <li>The images that we want used for <code>srcset</code> are instead placed in the <code>data-lazyload</code> attribute.</li>
     </ul>
@@ -76,7 +76,7 @@
     <h2>Use with <code>figure</code> elements and other wrappers.</h2>
 
     <figure>
-      <div class="js--lazyload js--lazyload--loading">
+      <div class="js--lazyload">
         <img alt="image description"
              src="images/example02@2x.jpg"
              srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -95,7 +95,7 @@
     </p>
 
     <pre>&#x3C;figure&#x3E;
-  &#x3C;div class=&#x22;js--lazyload js--lazyload--loading&#x22;&#x3E;
+  &#x3C;div class=&#x22;js--lazyload&#x22;&#x3E;
     &#x3C;img alt=&#x22;image description&#x22;
          src=&#x22;images/example02@2x.jpg&#x22;
          srcset=&#x22;data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==&#x22;
@@ -111,7 +111,7 @@
 
     <h2>How to Handle Different Aspect Ratios</h2>
 
-    <div class="js--lazyload js--lazyload--loading"
+    <div class="js--lazyload"
          style="padding-bottom: 66.67%">
       <img alt="image description"
            src="images/example03@2x.jpg"
@@ -130,7 +130,7 @@
       To change the aspect ratio to match your image, divide the height by the width and add an inline style to the wrapper:
     </p>
 
-    <pre>&#x3C;div class=&#x22;js--lazyload js--lazyload--loading&#x22;
+    <pre>&#x3C;div class=&#x22;js--lazyload&#x22;
      <strong>style=&#x22;padding-bottom: 66.67%&#x22;</strong>&#x3E;
   &#x3C;img alt=&#x22;image description&#x22;
        src=&#x22;images/example03@2x.jpg&#x22;
@@ -144,7 +144,7 @@
     <h2>Images With Unknown Sizes</h2>
 
     <img alt="image description"
-         class="js--lazyload js--lazyload--loading"
+         class="js--lazyload"
          src="images/example04@2x.jpg"
          srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
          data-lazyload="images/example04-300x150.jpg 300w,
@@ -157,7 +157,7 @@
     </p>
 
     <pre>&#x3C;img alt=&#x22;image description&#x22;
-     class=&#x22;js--lazyload js--lazyload--loading&#x22;
+     class=&#x22;js--lazyload&#x22;
      src=&#x22;images/example04@2x.jpg&#x22;
      srcset=&#x22;data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==&#x22;
      data-lazyload=&#x22;images/example04-300x150.jpg 300w,
@@ -170,6 +170,8 @@
     </p>
 
   </div>
+
+  <a href="https://github.com/jlengstorf/responsive-lazyload.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
 
   <script src="../dist/responsive-lazyload.min.js"></script>
