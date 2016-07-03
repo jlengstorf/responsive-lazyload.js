@@ -7,12 +7,23 @@
 
   <link rel="stylesheet" href="../dist/responsive-lazyload.min.css">
   <link rel="stylesheet" href="css/example-only.css">
+
+  <style>
+
+    /*
+     * Since an image that’s not in the wrapper won't load properly, we have to
+     * hide it manually if JS is disabled but leave the fallback image visible.
+     */
+    .no-js img.js--lazyload:not(.js--lazyload--fallback) {
+      display: none;
+    }
+  </style>
 </head>
-<body>
+<body class="no-js">
 
   <div class="example">
 
-    <h1>Responsive Lazyload Examples</h1>
+    <h1>Responsive Lazyload Examples: Degrade Gracefully If JavaScript Is Disabled</h1>
 
     <nav>
       <strong>Examples:</strong>
@@ -39,6 +50,14 @@
                           images/example-600x300.jpg 600w,
                           images/example.jpg 690w,
                           images/example@2x.jpg 1380w">
+      <noscript>
+        <img alt="image description"
+             src="images/example@2x.jpg"
+             srcset="images/example-300x150.jpg 300w,
+                     images/example-600x300.jpg 600w,
+                     images/example.jpg 690w,
+                     images/example@2x.jpg 1380w">
+      </noscript>
     </div>
 
     <p>
@@ -53,6 +72,14 @@
                       images/example-600x300.jpg 600w,
                       images/example.jpg 690w,
                       images/example@2x.jpg 1380w&#x22;&#x3E;
+  &#x3C;noscript&#x3E;
+    &#x3C;img alt=&#x22;image description&#x22;
+         src=&#x22;images/example@2x.jpg&#x22;
+         srcset=&#x22;images/example-300x150.jpg 300w,
+                 images/example-600x300.jpg 600w,
+                 images/example.jpg 690w,
+                 images/example@2x.jpg 1380w&#x22;&#x3E;
+  &#x3C;/noscript&#x3E;
 &#x3C;/div&#x3E;</pre>
 
     <p>
@@ -85,6 +112,14 @@
                             images/example02-600x300.jpg 600w,
                             images/example02.jpg 690w,
                             images/example02@2x.jpg 1380w">
+        <noscript>
+          <img alt="image description"
+               src="images/example02@2x.jpg"
+               srcset="images/example02-300x150.jpg 300w,
+                       images/example02-600x300.jpg 600w,
+                       images/example02.jpg 690w,
+                       images/example02@2x.jpg 1380w">
+        </noscript>
       </div>
       <figcaption>
         You can also include lazyloaded images in <code>figure</code> elements.
@@ -104,6 +139,14 @@
                         images/example02-600x300.jpg 600w,
                         images/example02.jpg 690w,
                         images/example02@2x.jpg 1380w&#x22;&#x3E;
+    &#x3C;noscript&#x3E;
+      &#x3C;img alt=&#x22;image description&#x22;
+           src=&#x22;images/example02@2x.jpg&#x22;
+           srcset=&#x22;images/example02-300x150.jpg 300w,
+                   images/example02-600x300.jpg 600w,
+                   images/example02.jpg 690w,
+                   images/example02@2x.jpg 1380w&#x22;&#x3E;
+    &#x3C;/noscript&#x3E;
   &#x3C;/div&#x3E;
   &#x3C;figcaption&#x3E;
     You can also include lazyloaded images in &#x3C;code&#x3E;figure&#x3C;/code&#x3E; elements.
@@ -121,6 +164,14 @@
                           images/example03-600w.jpg 600w,
                           images/example03.jpg 690w,
                           images/example03@2x.jpg 1380w">
+      <noscript>
+        <img alt="image description"
+             src="images/example03@2x.jpg"
+             srcset="images/example03-300w.jpg 300w,
+                     images/example03-600w.jpg 600w,
+                     images/example03.jpg 690w,
+                     images/example03@2x.jpg 1380w">
+      </noscript>
     </div>
 
     <p>
@@ -132,7 +183,7 @@
     </p>
 
     <pre>&#x3C;div class=&#x22;js--lazyload&#x22;
-     <strong>style=&#x22;padding-bottom: 66.67%&#x22;</strong>&#x3E;
+     style=&#x22;padding-bottom: 66.67%&#x22;&#x3E;
   &#x3C;img alt=&#x22;image description&#x22;
        src=&#x22;images/example03@2x.jpg&#x22;
        srcset=&#x22;data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==&#x22;
@@ -140,6 +191,14 @@
                       images/example03-600w.jpg 600w,
                       images/example03.jpg 690w,
                       images/example03@2x.jpg 1380w&#x22;&#x3E;
+  &#x3C;noscript&#x3E;
+    &#x3C;img alt=&#x22;image description&#x22;
+         src=&#x22;images/example03@2x.jpg&#x22;
+         srcset=&#x22;images/example03-300w.jpg 300w,
+                 images/example03-600w.jpg 600w,
+                 images/example03.jpg 690w,
+                 images/example03@2x.jpg 1380w&#x22;&#x3E;
+  &#x3C;/noscript&#x3E;
 &#x3C;/div&#x3E;</pre>
 
     <h2>Images With Unknown Sizes</h2>
@@ -152,6 +211,15 @@
                         images/example04-600x300.jpg 600w,
                         images/example04.jpg 690w,
                         images/example04@2x.jpg 1380w">
+    <noscript>
+      <img alt="image description"
+           class="js--lazyload js--lazyload--fallback"
+           src="images/example04@2x.jpg"
+           srcset="images/example04-300x150.jpg 300w,
+                   images/example04-600x300.jpg 600w,
+                   images/example04.jpg 690w,
+                   images/example04@2x.jpg 1380w">
+    </noscript>
 
     <p>
       To avoid setting explicit sizes, the lazyload class can be applied directly to the <code>img</code> tag.
@@ -164,11 +232,28 @@
      data-lazyload=&#x22;images/example04-300x150.jpg 300w,
                     images/example04-600x300.jpg 600w,
                     images/example04.jpg 690w,
-                    images/example04@2x.jpg 1380w&#x22;&#x3E;</pre>
+                    images/example04@2x.jpg 1380w&#x22;&#x3E;
+&#x3C;noscript&#x3E;
+  &#x3C;img alt=&#x22;image description&#x22;
+       class=&#x22;js--lazyload js--lazyload--fallback&#x22;
+       src=&#x22;images/example04@2x.jpg&#x22;
+       srcset=&#x22;images/example04-300x150.jpg 300w,
+               images/example04-600x300.jpg 600w,
+               images/example04.jpg 690w,
+               images/example04@2x.jpg 1380w&#x22;&#x3E;
+&#x3C;/noscript&#x3E;</pre>
 
     <p>
       <em>NOTE:</em> This approach causes the content to reflow (unless the image is square) and may cause layout issues since it tries to set the image at 100% of its container width. Use at your own discretion.
     </p>
+
+    <p>
+      <em>ALSO NOTE:</em> Since an image that’s not in the wrapper won't load properly, we have to hide it manually if JS is disabled but leave the fallback image visible:
+    </p>
+
+    <pre>.no-js img.js--lazyload:not(.js--lazyload--fallback) {
+  display: none;
+}</pre>
 
     <footer>
       <p>
@@ -186,6 +271,9 @@
   <script src="../dist/responsive-lazyload.min.js"></script>
   <script>
     responsiveLazyload.lazyLoadImages();
+
+    // Remove the `no-js` class to signify that JS is enabled.
+    document.querySelector('body').classList.remove('no-js');
   </script>
 </body>
 </html>

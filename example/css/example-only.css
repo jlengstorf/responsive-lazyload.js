@@ -11,6 +11,7 @@ body {
   max-width: 550px;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 20vh;
   padding-left: 5vw;
   padding-right: 5vw;
   color: #333a40;
@@ -21,6 +22,27 @@ body {
 h1,h2,figcaption {
   color: #111a20;
   font-family: sans-serif;
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+h2 {
+  margin-top: 15vh;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+@media (min-width: 550px) {
+  h1 {
+    font-size: 175%;
+  }
+
+  h2 {
+    font-size: 150%;
+  }
 }
 
 figcaption {
@@ -40,4 +62,16 @@ pre {
   max-width: 100%;
   padding: 1em;
   overflow-x: scroll;
+}
+
+footer {
+  margin: 50px 0;
+  color: #666a70;
+  font-family: sans-serif;
+  font-size: 75%;
+  text-align: center;
+}
+
+footer a {
+  color: inherit;
 }
