@@ -2,6 +2,84 @@
 
 This was inspired by <https://github.com/ivopetkov/responsively-lazy/>, but I found the implementation to be a little over-engineered. This solution uses similar markup, but hugely simplifies the way the actual image replacement is handled. It also adds an optional fallback for when JavaScript is disabled.
 
+Check out [the examples](https://jlengstorf.github.io/responsive-lazyload.js/example/) for more information.
+
+## Quick Start
+
+### Option 1: Using a Build Tool
+
+This example assumes [webpack](https://webpack.github.io/).
+
+#### 1. Install the module using [Bower](https://bower.io/).
+
+    bower install --save responsive-lazyload
+
+#### 2. Make sure webpack is loading Bower components.
+
+In your `webpack.config.js` or other webpack initialization, add a `resolve` handler for modules:
+
+    resolve: {
+      modulesDirectories: [ "bower_components", "node_modules" ],
+    },
+
+(Further reading: [webpack usage with Bower](https://webpack.github.io/docs/usage-with-bower.html).)
+
+#### 3. Include the module and initialize lazyloading.
+
+Load the module and initialize lazyloading in your app's script:
+
+    import { lazyLoadImages } from 'responsive-lazyload';
+
+    lazyLoadImages();
+
+#### 4. Add a lazyloaded image to your markup.
+
+Place the lazyload markup anywhere in your app's markup:
+
+    <div class="js--lazyload">
+      <img alt="a lazyloaded image"
+           src="http://placekitten.com/400/300"
+           srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+           data-lazyload="http://placekitten.com/400/300 1x,
+                          http://placekitten.com/800/600 2x">
+    </div>
+
+For more information and configuration options, see [the examples](https://jlengstorf.github.io/responsive-lazyload.js/example/).
+
+### Option 2: Manual Download
+
+#### 1. Download the latest release.
+
+Download the [latest release of responsive-lazyload.js from GitHub](https://github.com/jlengstorf/responsive-lazyload.js/releases). Extract the files and place them inside your project (e.g. inside a `vendor/` directory).
+
+#### 2. Include the script in your markup.
+
+Just before the closing `</body>` tag, add the lazyloading script:
+
+    <script src="/vendor/responsive-lazyload.js/dist/responsive-lazyload.min.js"></script>
+
+#### 3. Initialize lazyloading.
+
+The initialization function is stored inside a global object called `responsiveLazyload`. Initialize lazyloading by adding the following just below the script include:
+
+    <script>
+      responsiveLazyload.lazyLoadImages();
+    </script>
+
+#### 4. Add a lazyloaded image to your markup.
+
+Place the lazyload markup anywhere in your app's markup:
+
+    <div class="js--lazyload">
+      <img alt="a lazyloaded image"
+           src="http://placekitten.com/400/300"
+           srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+           data-lazyload="http://placekitten.com/400/300 1x,
+                          http://placekitten.com/800/600 2x">
+    </div>
+
+For more information and configuration options, see [the examples](https://jlengstorf.github.io/responsive-lazyload.js/example/).
+
 ## Markup
 
 The markup to implement this is:
