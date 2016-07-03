@@ -83,35 +83,22 @@ const removeLoadingClass = (image, loadingClass) => {
 };
 
 /**
- * Check if the browser supports `srcset`.
- * @return {Boolean} `true` if supported; `false` if not
- */
-const hasSrcsetSupport = () => {
-  return 'srcset' in document.createElement('img');
-};
-
-/**
- * Initializes the lazyloader and adds all relevant handlers.
- * @param  {String} options.containerClass the container for images to lazyload
- * @param  {String} options.loadingClass   the loading class for lazyloading
+ * Initializes the lazyloader and adds the relevant classes and handlers.
+ * @param  {String}   options.containerClass the lazyloaded image wrapper
+ * @param  {String}   options.loadingClass   the class that signifies loading
+ * @param  {Function} options.callback       a function to fire on image load
  * @return {Void}
  */
-export function lazyLoadImages({
+const initialize = ({
   containerClass = "js--lazyload",
   loadingClass = "js--lazyload--loading",
   callback = () => {},
-} = {}) {
+} = {}) => {
+
+  // Find all the containers and add the loading class.
   const containers = document.getElementsByClassName(containerClass);
-
-  // Before we do anything, check if the browser supports `srcset`
-  if (!hasSrcsetSupport()) {
-
-    // If not, remove the loading class and bail out.
-    for (let container of containers) {
-      removeLoadingClass(container, loadingClass);
-    }
-
-    return false;
+  for (let i = 0, l = containers.length; i < l; i++) {
+    containers[i].classList.add(loadingClass);
   }
 
   // If we get here, `srcset` is supported and we can start processing things.
@@ -154,4 +141,23 @@ export function lazyLoadImages({
     });
   }, 100);
   window.addEventListener('scroll', scrollHandler);
+}
+
+/**
+ * The public function to initialize lazyloading
+ * @param  {Object} config configuration options (see `initialize()`)
+ * @return {Boolean}       `true` if initialized; `false` if not
+ */
+export function lazyLoadImages(config = {}) {
+
+  // Before we do anything, check if the browser supports `srcset`
+  if ('srcset' in document.createElement('img')) {
+
+    // If we have `srcset` support, initialize the lazyloader.
+    initialize(config);
+
+    return true;
+  } else {
+    return false;
+  }
 }
