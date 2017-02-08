@@ -2,7 +2,7 @@
 
 This was inspired by <https://github.com/ivopetkov/responsively-lazy/>, but I found the implementation to be a little over-engineered. This solution uses similar markup, but hugely simplifies the way the actual image replacement is handled. It also adds an optional fallback for when JavaScript is disabled.
 
-Check out [the examples](https://jlengstorf.github.io/responsive-lazyload.js/example/) for more information.
+Check out [the examples](https://code.lengstorf.com/responsive-lazyload.js/) for more information.
 
 ## Quick Start
 
