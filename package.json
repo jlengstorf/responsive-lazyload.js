@@ -27,12 +27,13 @@
   },
   "keywords": [
     "module",
-    "lazy load",
+    "lazy-load",
     "lazyload",
     "images",
     "responsive",
     "fallback",
-    "html5"
+    "html5",
+    "lazyload-images"
   ],
   "author": "Jason Lengstorf <jason@lengstorf.com> (@jlengstorf)",
   "license": "ISC",
