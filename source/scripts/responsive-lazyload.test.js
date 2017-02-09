@@ -85,7 +85,7 @@ describe('enables lazy loading of images', () => {
     });
 
     test('does NOT change the `srcset` attribute', () => {
-      expect(image.srcset).toEqual('data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
+      expect(image.srcset).toEqual(gif);
     });
   });
 
@@ -110,7 +110,6 @@ describe('enables lazy loading of images', () => {
 
   describe('loads an image once it enters the viewport', () => {
     test('', (done) => {
-      const container = document.querySelector('#unloaded-container');
       const imageToLoad = document.querySelector('#will-not-load');
 
       // We want to simulate scrolling into the viewport, so we overwrite this.
@@ -128,11 +127,8 @@ describe('enables lazy loading of images', () => {
       setTimeout(() => {
         clearInterval(scroller);
 
-        imageToLoad.dispatchEvent(loadEvent);
-
-        expect(container.classList.contains('js--lazyload--loading')).toBe(false);
+        // Scrolling should trigger the image to load.
         expect(imageToLoad.getAttribute('data-loaded')).toBe('true');
-
         done();
       }, 200);
     });
