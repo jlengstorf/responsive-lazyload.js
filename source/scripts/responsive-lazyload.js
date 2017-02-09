@@ -1,5 +1,9 @@
 /**
  * Check if an element is visible at all in the viewport.
+ *
+ * It would be cool to use an IntersectionObserver here, but browser support
+ * isn’t there yet: http://caniuse.com/#feat=intersectionobserver
+ *
  * @param  {Element} el the element to check
  * @return {Boolean}    `true` if the element is visible at all; `false` if not
  */
@@ -38,7 +42,7 @@ function throttle(func, limit = 200) {
  * @return {Boolean}       true if the image is in the viewport; false if not
  */
 const maybeTriggerImageLoad = (image, event) => {
-  if (!image.dataset.loaded && isElementVisible(image)) {
+  if (!image.getAttribute('data-loaded') && isElementVisible(image)) {
     image.dispatchEvent(event);
 
     return true;
@@ -52,12 +56,10 @@ const maybeTriggerImageLoad = (image, event) => {
  * @param  {Element} container `img` element to be lazyloaded or its container
  * @return {Element}           the `img` element to be lazyloaded
  */
-const findImageElement = container => {
-  if (container.tagName.toLowerCase() === 'img') {
-    return container;
-  } else {
-    return container.querySelector('img');
-  }
+const findImageElement = (container) => {
+  const tag = container.tagName.toLowerCase();
+
+  return tag === 'img' ? container : container.querySelector('img');
 };
 
 /**
@@ -65,11 +67,12 @@ const findImageElement = container => {
  * @param  {Event} event the triggered event
  * @return {Void}
  */
-const loadImage = event => {
-  event.target.srcset = event.target.dataset.lazyload;
+const loadImage = (event) => {
+  const image = event.target;
 
-  // Add a `data-loaded` attribute to prevent duplicate loads.
-  event.target.dataset.loaded = true;
+  // Swap in the srcset info and add an attribute to prevent duplicate loads.
+  image.srcset = image.getAttribute('data-lazyload');
+  image.setAttribute('data-loaded', true);
 };
 
 /**
@@ -103,16 +106,16 @@ const removeLoadingClass = (image, loadingClass) => {
  * @return {Void}
  */
 const initialize = ({
-  containerClass = "js--lazyload",
-  loadingClass = "js--lazyload--loading",
+  containerClass = 'js--lazyload',
+  loadingClass = 'js--lazyload--loading',
   callback = () => {},
 } = {}) => {
-
   // Find all the containers and add the loading class.
   const containers = document.getElementsByClassName(containerClass);
-  for (let i = 0, l = containers.length; i < l; i++) {
-    containers[i].classList.add(loadingClass);
-  }
+
+  [].forEach.call(containers, (container) => {
+    container.classList.add(loadingClass);
+  });
 
   // If we get here, `srcset` is supported and we can start processing things.
   const images = [].map.call(containers, findImageElement);
@@ -121,13 +124,12 @@ const initialize = ({
   const lazyLoadEvent = new Event('lazyload-init');
 
   // Attach an onload handler to each image.
-  images.forEach(image => {
-
+  images.forEach((image) => {
     /*
      * Once the image is loaded, we want to remove the loading class so any
      * loading animations or other effects can be disabled.
      */
-    image.addEventListener('load', event => {
+    image.addEventListener('load', (event) => {
       removeLoadingClass(event.target, loadingClass);
       callback(event);
     });
@@ -149,12 +151,12 @@ const initialize = ({
    * page, we throttle this call to only run every 100ms.
    */
   const scrollHandler = throttle(() => {
-    images.forEach(image => {
+    images.forEach((image) => {
       maybeTriggerImageLoad(image, lazyLoadEvent);
     });
   }, 100);
   window.addEventListener('scroll', scrollHandler);
-}
+};
 
 /**
  * The public function to initialize lazyloading
@@ -162,15 +164,12 @@ const initialize = ({
  * @return {Boolean}       `true` if initialized; `false` if not
  */
 export function lazyLoadImages(config = {}) {
-
-  // Before we do anything, check if the browser supports `srcset`
+  // If we have `srcset` support, initialize the lazyloader.
   if ('srcset' in document.createElement('img')) {
-
-    // If we have `srcset` support, initialize the lazyloader.
     initialize(config);
-
-    return true;
-  } else {
-    return false;
   }
 }
+
+export default {
+  lazyLoadImages,
+};
