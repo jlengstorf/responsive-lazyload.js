@@ -1,3 +1,13 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.0.0...v1.0.1) (2017-02-09)
+
+
+### Performance Improvements
+
+* **removeLoadingClass:** added an early return to while loop ([d6e38b0](https://github.com/jlengstorf/responsive-lazyload.js/commit/d6e38b0))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/jlengstorf/responsive-lazyload.js/compare/v0.1.6...v1.0.0) (2017-02-09)
 
