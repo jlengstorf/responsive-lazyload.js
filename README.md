@@ -168,16 +168,11 @@ lazyLoadImages({
 
 option           | default                 | description
 ---------------- | ----------------------- | -----------------------------------
-`containerClass` | `js--lazyload`          | Determines which elements are 
-                                             targeted for lazyloading.
+`containerClass` | `js--lazyload`          | Determines which elements are targeted for lazyloading.
 
-`loadingClass`   | `js--lazyload--loading` | Applied to containers before 
-                                             loading. This is useful for adding 
-                                             loading animations.
+`loadingClass`   | `js--lazyload--loading` | Applied to containers before loading. This is useful for adding loading animations.
 
-`callback`       | `() => {}`              | Fired on _each_ image load. Useful
-                                             for adding custom functionality
-                                             after an image has loaded.
+`callback`       | `() => {}`              | Fired on _each_ image load. Useful for adding custom functionality after an image has loaded.
 
 ## Development
 
