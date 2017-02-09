@@ -83,6 +83,7 @@ const loadImage = (event) => {
  */
 const removeLoadingClass = (image, loadingClass) => {
   let element = image;
+  let shouldReturn = false;
 
   /*
    * Since there may be additional elements wrapping the image (e.g. a link),
@@ -92,8 +93,13 @@ const removeLoadingClass = (image, loadingClass) => {
   while (element.tagName.toLowerCase() !== 'body') {
     if (element.classList.contains(loadingClass)) {
       element.classList.remove(loadingClass);
+      shouldReturn = true;
     } else {
       element = element.parentNode;
+    }
+
+    if (shouldReturn) {
+      return;
     }
   }
 };
