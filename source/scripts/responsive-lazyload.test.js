@@ -1,5 +1,7 @@
 import { lazyLoadImages } from './responsive-lazyload';
 
+const gif = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+
 // This feels hacky, but allows us to DRY out the test code a bit.
 let image = false;
 
@@ -10,7 +12,7 @@ describe('enables lazy loading of images', () => {
         <img id="will-load"
              alt="image description"
              src="images/example@2x.jpg"
-             srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+             srcset="${gif}"
              data-lazyload="images/example-300x150.jpg 300w,
                             images/example-600x300.jpg 600w,
                             images/example.jpg 690w,
@@ -21,7 +23,7 @@ describe('enables lazy loading of images', () => {
           <img id="with-link"
                alt="image description"
                src="images/example@2x.jpg"
-               srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+               srcset="${gif}"
                data-lazyload="images/example-300x150.jpg 300w,
                               images/example-600x300.jpg 600w,
                               images/example.jpg 690w,
@@ -32,7 +34,7 @@ describe('enables lazy loading of images', () => {
         <img id="will-not-load"
              alt="image description"
              src="images/example2@2x.jpg"
-             srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+             srcset="${gif}"
              data-lazyload="images/example2-300x150.jpg 300w,
                             images/example2-600x300.jpg 600w,
                             images/example2.jpg 690w,

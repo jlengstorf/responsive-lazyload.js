@@ -1,5 +1,7 @@
-var webpack = require('webpack');
-var isDev = (process.env.NODE_ENV === 'development');
+const webpack = require('webpack');
+const path = require('path');
+
+const isDev = (process.env.NODE_ENV === 'development');
 
 module.exports = {
   debug: isDev,
@@ -7,11 +9,11 @@ module.exports = {
   entry: {
     bundle: [
       './source/scripts/responsive-lazyload.browser.js',
-    ]
+    ],
   },
   output: {
-    path: __dirname + '/dist',
-    filename: 'responsive-lazyload.min.js'
+    path: path.join(__dirname, '/dist'),
+    filename: 'responsive-lazyload.min.js',
   },
   module: {
     loaders: [
@@ -20,7 +22,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
       },
-    ]
+    ],
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
