@@ -1,5 +1,7 @@
 # Lazyload Images Responsively
 
+[![Build Status](https://travis-ci.org/jlengstorf/responsive-lazyload.js.svg?branch=master)](https://travis-ci.org/jlengstorf/responsive-lazyload.js) [![Code Climate](https://codeclimate.com/github/jlengstorf/responsive-lazyload.js/badges/gpa.svg)](https://codeclimate.com/github/jlengstorf/responsive-lazyload.js) [![Test Coverage](https://codeclimate.com/github/jlengstorf/responsive-lazyload.js/badges/coverage.svg)](https://codeclimate.com/github/jlengstorf/responsive-lazyload.js/coverage)
+
 This was inspired by <https://github.com/ivopetkov/responsively-lazy/>, but I found the implementation to be a little over-engineered. This solution uses similar markup, but hugely simplifies the way the actual image replacement is handled. It also adds an optional fallback for when JavaScript is disabled.
 
 Check out [the examples](https://code.lengstorf.com/responsive-lazyload.js/) for more information.
