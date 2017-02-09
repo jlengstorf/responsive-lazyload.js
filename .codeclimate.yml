@@ -1,0 +1,13 @@
+---
+engines:
+  eslint:
+    enabled: true
+    channel: eslint-2
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - source/**
+exclude_paths:
+- coverage/**/*
+- node_modules/**/*
