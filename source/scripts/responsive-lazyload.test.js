@@ -1,5 +1,9 @@
 import { lazyLoadImages } from './responsive-lazyload';
 
+// We simulate the load event to ensure we’re handling it properly.
+const loadEvent = new Event('load');
+const scrollEvent = new Event('scroll');
+
 const gif = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
 // This feels hacky, but allows us to DRY out the test code a bit.
@@ -86,9 +90,6 @@ describe('enables lazy loading of images', () => {
   });
 
   describe('handles container loading classes appropriately', () => {
-    // We simulate the load event to ensure we’re handling it properly.
-    const loadEvent = new Event('load');
-
     test('adds the loading class to each container', () => {
       const container = document.querySelector('#unloaded-container');
       expect(container.classList.contains('js--lazyload--loading')).toBe(true);
@@ -104,6 +105,36 @@ describe('enables lazy loading of images', () => {
       const container = document.querySelector('#loaded-container-with-nesting');
       container.querySelector('img').dispatchEvent(loadEvent);
       expect(container.classList.contains('js--lazyload--loading')).toBe(false);
+    });
+  });
+
+  describe('loads an image once it enters the viewport', () => {
+    test('', (done) => {
+      const container = document.querySelector('#unloaded-container');
+      const imageToLoad = document.querySelector('#will-not-load');
+
+      // We want to simulate scrolling into the viewport, so we overwrite this.
+      imageToLoad.getBoundingClientRect = () => ({
+        top: 0,
+        bottom: 400,
+      });
+
+      // Simulate scrolling
+      const scroller = setInterval(() => {
+        window.dispatchEvent(scrollEvent);
+      }, 10);
+
+      // Stop scrolling after 200ms
+      setTimeout(() => {
+        clearInterval(scroller);
+
+        imageToLoad.dispatchEvent(loadEvent);
+
+        expect(container.classList.contains('js--lazyload--loading')).toBe(false);
+        expect(imageToLoad.getAttribute('data-loaded')).toBe('true');
+
+        done();
+      }, 200);
     });
   });
 });
