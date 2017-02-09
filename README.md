@@ -12,39 +12,44 @@ Check out [the examples](https://code.lengstorf.com/responsive-lazyload.js/) for
 
 This example assumes [webpack](https://webpack.github.io/).
 
-#### 1. Install the module using [Bower](https://bower.io/).
+#### 1. Install the module using [npm](https://www.npmjs.com/package/responsive-lazyload).
 
-    bower install --save responsive-lazyload
+```sh
+npm install --save responsive-lazyload
+```
 
-#### 2. Make sure webpack is loading Bower components.
-
-In your `webpack.config.js` or other webpack initialization, add a `resolve` handler for modules:
-
-    resolve: {
-      modulesDirectories: [ "bower_components", "node_modules" ],
-    },
-
-(Further reading: [webpack usage with Bower](https://webpack.github.io/docs/usage-with-bower.html).)
-
-#### 3. Include the module and initialize lazyloading.
+#### 2. Include the module and initialize lazyloading.
 
 Load the module and initialize lazyloading in your app's script:
 
-    import { lazyLoadImages } from 'responsive-lazyload';
+```js
+import { lazyLoadImages } from 'responsive-lazyload';
 
-    lazyLoadImages();
+lazyLoadImages();
+```
+
+#### 3. Include the stylesheet.
+
+Include the following in the `<head>` of your document.
+
+```html
+<link rel="stylesheet" 
+      href="node_modules/responsive-lazyload/dist/responsive-lazyload.min.css">
+```
 
 #### 4. Add a lazyloaded image to your markup.
 
 Place the lazyload markup anywhere in your app's markup:
 
-    <div class="js--lazyload">
-      <img alt="a lazyloaded image"
-           src="http://placekitten.com/400/300"
-           srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-           data-lazyload="http://placekitten.com/400/300 1x,
-                          http://placekitten.com/800/600 2x">
-    </div>
+```html
+<div class="js--lazyload">
+  <img alt="a lazyloaded image"
+       src="http://placekitten.com/400/300"
+       srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+       data-lazyload="http://placekitten.com/400/300 1x,
+                      http://placekitten.com/800/600 2x">
+</div>
+```
 
 For more information and configuration options, see [the examples](https://jlengstorf.github.io/responsive-lazyload.js/example/).
 
@@ -58,27 +63,42 @@ Download the [latest release of responsive-lazyload.js from GitHub](https://gith
 
 Just before the closing `</body>` tag, add the lazyloading script:
 
-    <script src="/vendor/responsive-lazyload.js/dist/responsive-lazyload.min.js"></script>
+```html
+<script src="/vendor/responsive-lazyload.js/dist/responsive-lazyload.min.js"></script>
+```
+
+#### 3. Include the styles in your markup.
+
+Include the following in the `<head>` of your document:
+
+```html
+<link rel="stylesheet" 
+      href="/vendor/responsive-lazyload.js/dist/responsive-lazyload.min.css">
+```
 
 #### 3. Initialize lazyloading.
 
 The initialization function is stored inside a global object called `responsiveLazyload`. Initialize lazyloading by adding the following just below the script include:
 
-    <script>
-      responsiveLazyload.lazyLoadImages();
-    </script>
+```html
+<script>
+  responsiveLazyload.lazyLoadImages();
+</script>
+```
 
 #### 4. Add a lazyloaded image to your markup.
 
 Place the lazyload markup anywhere in your app's markup:
 
-    <div class="js--lazyload">
-      <img alt="a lazyloaded image"
-           src="http://placekitten.com/400/300"
-           srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-           data-lazyload="http://placekitten.com/400/300 1x,
-                          http://placekitten.com/800/600 2x">
-    </div>
+```html
+<div class="js--lazyload">
+  <img alt="a lazyloaded image"
+       src="http://placekitten.com/400/300"
+       srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+       data-lazyload="http://placekitten.com/400/300 1x,
+                      http://placekitten.com/800/600 2x">
+</div>
+```
 
 For more information and configuration options, see [the examples](https://jlengstorf.github.io/responsive-lazyload.js/example/).
 
@@ -86,15 +106,17 @@ For more information and configuration options, see [the examples](https://jleng
 
 The markup to implement this is:
 
-    <div class="js--lazyload js--lazyload--loading">
-      <img alt="image description"
-           src="/images/image@2x.jpg"
-           srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-           data-lazyload="/images/image-300x150.jpg 300w,
-                        /images/image-600x300.jpg 600w,
-                        /images/image.jpg 690w,
-                        /images/image@2x.jpg 1380w">
-    </div>
+```html
+<div class="js--lazyload js--lazyload--loading">
+  <img alt="image description"
+       src="/images/image@2x.jpg"
+       srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+       data-lazyload="/images/image-300x150.jpg 300w,
+                    /images/image-600x300.jpg 600w,
+                    /images/image.jpg 690w,
+                    /images/image@2x.jpg 1380w">
+</div>
+```
 
 ### Markup Details
 
@@ -110,36 +132,78 @@ On browsers that don’t support `srcset`, the regular `src` attribute is used, 
 
 To ensure that an image is still visible, even if JavaScript is disabled, add a `<noscript>` block with the properly marked up image using `srcset` without the lazyloading solution:
 
-    <div class="js--lazyload js--lazyload--loading">
-      <img alt="image description"
-           src="/images/image@2x.jpg"
-           srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-           data-lazyload="/images/image-300x150.jpg 300w,
-                        /images/image-600x300.jpg 600w,
-                        /images/image.jpg 690w,
-                        /images/image@2x.jpg 1380w">
-      <noscript>
-        <img alt="image description"
-             src="/images/image@2x.jpg"
-             srcset="/images/image-300x150.jpg 300w,
-                     /images/image-600x300.jpg 600w,
-                     /images/image.jpg 690w,
-                     /images/image@2x.jpg 1380w">
-      </noscript>
-    </div>
+```html
+<div class="js--lazyload js--lazyload--loading">
+  <img alt="image description"
+       src="/images/image@2x.jpg"
+       srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+       data-lazyload="/images/image-300x150.jpg 300w,
+                    /images/image-600x300.jpg 600w,
+                    /images/image.jpg 690w,
+                    /images/image@2x.jpg 1380w">
+  <noscript>
+    <img alt="image description"
+         src="/images/image@2x.jpg"
+         srcset="/images/image-300x150.jpg 300w,
+                 /images/image-600x300.jpg 600w,
+                 /images/image.jpg 690w,
+                 /images/image@2x.jpg 1380w">
+  </noscript>
+</div>
+```
 
-## JavaScript
+## JavaScript Options
 
 To enable lazyloading, add the following to your initialization script:
 
-    import { lazyLoadImages } from './utils/lazyload-images';
+```js
+import { lazyLoadImages } from './utils/lazyload-images';
 
-    lazyLoadImages({
-      containerClass: 'js--lazyload',
-      loadingClass: 'js--lazyload--loading',
-    });
+lazyLoadImages({
+    containerClass: 'js--lazyload',
+    loadingClass: 'js--lazyload--loading',
+    callback: () => {},
+});
+```
 
-### JavaScript Details
+option           | default                 | description
+---------------- | ----------------------- | -----------------------------------
+`containerClass` | `js--lazyload`          | Determines which elements are 
+                                             targeted for lazyloading.
 
-- This approach assumes the use of a transpiler (such as [Babel](https://babeljs.io/)) to allow the use of ES2015 modules.
-- The `containerClass` and `loadingClass` properties are optional; the default values are shown in the example above.
+`loadingClass`   | `js--lazyload--loading` | Applied to containers before 
+                                             loading. This is useful for adding 
+                                             loading animations.
+
+`callback`       | `() => {}`              | Fired on _each_ image load. Useful
+                                             for adding custom functionality
+                                             after an image has loaded.
+
+## Development
+
+To run this module locally for development, follow these steps:
+
+```sh
+# Clone the repo.
+git clone git@github.com:jlengstorf/responsive-lazyload.js.git
+
+# Move into the repo.
+cd responsive-lazyload.js/
+
+# Install dependencies.
+npm install
+
+# Run the build script.
+npm run build
+```
+
+### Testing
+
+Tests are built using [Jest](https://facebook.github.io/jest/). Run them with:
+
+```sh
+npm test
+
+# Or, to remove all the extra crap npm spits out and only show test output:
+npm test --silent
+```
