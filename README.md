@@ -4,11 +4,9 @@
 
 This package was inspired by <https://github.com/ivopetkov/responsively-lazy/>. It uses very similar markup, but significantly simplifies the way image replacement is handled under the hood. It also adds an optional fallback for when JavaScript is disabled.
 
-## Examples
-
-Check out [the examples](https://code.lengstorf.com/responsive-lazyload.js/) for more information.
-
 ## Quick Start
+
+Check out [the examples](https://code.lengstorf.com/responsive-lazyload.js/) for copy-pasteable code and more information about usage.
 
 ### Option 1: Using a Build Tool
 
