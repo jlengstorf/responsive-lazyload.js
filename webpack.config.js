@@ -4,7 +4,6 @@ const path = require('path');
 const isDev = (process.env.NODE_ENV === 'development');
 
 module.exports = {
-  debug: isDev,
   devtool: (isDev ? 'cheap-source-map' : 'source-map'),
   entry: {
     bundle: [
@@ -16,15 +15,17 @@ module.exports = {
     filename: 'responsive-lazyload.min.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
       },
     ],
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+    }),
   ],
 };
