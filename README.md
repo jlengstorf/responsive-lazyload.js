@@ -51,7 +51,7 @@ Place the lazyload markup anywhere in your app's markup:
 </div>
 ```
 
-For more information and configuration options, see [the examples](https://jlengstorf.github.io/responsive-lazyload.js/example/).
+For more information and configuration options, see [the examples](https://jlengstorf.github.io/responsive-lazyload.js/).
 
 ### Option 2: Manual Download
 
@@ -100,7 +100,7 @@ Place the lazyload markup anywhere in your app's markup:
 </div>
 ```
 
-For more information and configuration options, see [the examples](https://jlengstorf.github.io/responsive-lazyload.js/example/).
+For more information and configuration options, see [the examples](https://jlengstorf.github.io/responsive-lazyload.js/).
 
 ## Markup
 
