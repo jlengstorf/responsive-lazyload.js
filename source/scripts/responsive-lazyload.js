@@ -16,10 +16,10 @@ function isElementVisible(el) {
 
   // Check if any part of the element is vertically within the viewport.
   const position = el.getBoundingClientRect();
-  const wHeight = window.innerHeight || document.documentElement.clientHeight;
+  const wH = window.innerHeight || /* istanbul ignore next */ document.documentElement.clientHeight;
   const isWithinViewport = (
-    (position.top >= 0 && position.top <= wHeight) ||
-    (position.bottom >= 0 && position.bottom <= wHeight)
+    (position.top >= 0 && position.top <= wH) ||
+    (position.bottom >= 0 && position.bottom <= wH)
   );
 
   return isCurrentlyVisible && isWithinViewport;
@@ -31,7 +31,7 @@ function isElementVisible(el) {
  * @param  {Number}   limit the amount of milliseconds to wait between calls
  * @return {Function}       function to check if the function should be called
  */
-function throttle(func, limit = 200) {
+function throttle(func, /* istanbul ignore next */ limit = 200) {
   let wait = false;
 
   return () => {
@@ -130,8 +130,8 @@ const checkForImagesToLazyLoad = (lazyLoadEvent, images) => {
 const initialize = ({
   containerClass = 'js--lazyload',
   loadingClass = 'js--lazyload--loading',
-  callback = false,
-} = {}) => {
+  callback = e => e,
+}) => {
   // Find all the containers and add the loading class.
   const containers = document.getElementsByClassName(containerClass);
 
@@ -153,11 +153,7 @@ const initialize = ({
      */
     image.addEventListener('load', (event) => {
       removeLoadingClass(event.target, loadingClass);
-
-      // If a callback was provided, fire it.
-      if (typeof callback === 'function') {
-        callback(event);
-      }
+      callback(event);
     });
 
     /*
@@ -192,9 +188,14 @@ const initialize = ({
  */
 export function lazyLoadImages(config = {}) {
   // If we have `srcset` support, initialize the lazyloader.
+  /* istanbul ignore else: unreasonable to test browser support just for a no-op */
   if ('srcset' in document.createElement('img')) {
     return initialize(config);
   }
+
+  // If there’s no support, return a no-op.
+  /* istanbul ignore next: unreasonable to test browser support just for a no-op */
+  return () => { /* no-op */ };
 }
 
 export default {
