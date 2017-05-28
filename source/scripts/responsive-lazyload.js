@@ -182,7 +182,7 @@ const initialize = ({
  * @param  {Object} config configuration options (see `initialize()`)
  * @return {Function}      a function to manually check for images to lazy load
  */
-export function lazyLoadImages(config = {}) {
+function lazyLoadImages(config = {}) {
   // If we have `srcset` support, initialize the lazyloader.
   /* istanbul ignore else: unreasonable to test browser support just for a no-op */
   if ('srcset' in document.createElement('img')) {
@@ -194,6 +194,4 @@ export function lazyLoadImages(config = {}) {
   return () => { /* no-op */ };
 }
 
-export default {
-  lazyLoadImages,
-};
+export default lazyLoadImages;

@@ -23,7 +23,7 @@ npm install --save responsive-lazyload
 Load the module and initialize lazyloading in your app's script:
 
 ```js
-import { lazyLoadImages } from 'responsive-lazyload';
+import lazyLoadImages from 'responsive-lazyload';
 
 lazyLoadImages();
 ```
@@ -157,7 +157,7 @@ To ensure that an image is still visible, even if JavaScript is disabled, add a 
 To enable lazyloading, add the following to your initialization script:
 
 ```js
-import { lazyLoadImages } from './utils/lazyload-images';
+import lazyLoadImages from 'responsive-lazyload';
 
 lazyLoadImages({
     containerClass: 'js--lazyload',
