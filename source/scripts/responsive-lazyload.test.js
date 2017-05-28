@@ -1,4 +1,4 @@
-import { lazyLoadImages } from './responsive-lazyload';
+import lazyLoadImages from './responsive-lazyload';
 
 // We simulate the load event to ensure we’re handling it properly.
 const loadEvent = new Event('load');
