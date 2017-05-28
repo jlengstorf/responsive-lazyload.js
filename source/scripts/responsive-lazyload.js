@@ -8,13 +8,21 @@
  * @return {Boolean}    `true` if the element is visible at all; `false` if not
  */
 function isElementVisible(el) {
+  /*
+   * Checks if element (or an ancestor) is hidden via style properties.
+   * See https://stackoverflow.com/a/21696585/463471
+   */
+  const isCurrentlyVisible = el.offsetParent !== null;
+
+  // Check if any part of the element is vertically within the viewport.
   const position = el.getBoundingClientRect();
   const wHeight = window.innerHeight || document.documentElement.clientHeight;
-
-  return (
+  const isWithinViewport = (
     (position.top >= 0 && position.top <= wHeight) ||
     (position.bottom >= 0 && position.bottom <= wHeight)
   );
+
+  return isCurrentlyVisible && isWithinViewport;
 }
 
 /**
@@ -30,7 +38,9 @@ function throttle(func, limit = 200) {
     if (!wait) {
       func.call();
       wait = true;
-      setTimeout(() => { wait = false; }, limit);
+      setTimeout(() => {
+        wait = false;
+      }, limit);
     }
   };
 }
@@ -104,17 +114,23 @@ const removeLoadingClass = (image, loadingClass) => {
   }
 };
 
+const checkForImagesToLazyLoad = (lazyLoadEvent, images) => {
+  images.forEach((image) => {
+    maybeTriggerImageLoad(image, lazyLoadEvent);
+  });
+};
+
 /**
  * Initializes the lazyloader and adds the relevant classes and handlers.
  * @param  {String}   options.containerClass the lazyloaded image wrapper
  * @param  {String}   options.loadingClass   the class that signifies loading
  * @param  {Function} options.callback       a function to fire on image load
- * @return {Void}
+ * @return {Function}                        a function to load visible images
  */
 const initialize = ({
   containerClass = 'js--lazyload',
   loadingClass = 'js--lazyload--loading',
-  callback = () => {},
+  callback = false,
 } = {}) => {
   // Find all the containers and add the loading class.
   const containers = document.getElementsByClassName(containerClass);
@@ -137,7 +153,11 @@ const initialize = ({
      */
     image.addEventListener('load', (event) => {
       removeLoadingClass(event.target, loadingClass);
-      callback(event);
+
+      // If a callback was provided, fire it.
+      if (typeof callback === 'function') {
+        callback(event);
+      }
     });
 
     /*
@@ -152,27 +172,28 @@ const initialize = ({
     maybeTriggerImageLoad(image, lazyLoadEvent);
   });
 
+  const loadVisibleImages = checkForImagesToLazyLoad.bind(null, lazyLoadEvent, images);
+
   /*
    * Add an event listener when the page is scrolled. To avoid bogging down the
    * page, we throttle this call to only run every 100ms.
    */
-  const scrollHandler = throttle(() => {
-    images.forEach((image) => {
-      maybeTriggerImageLoad(image, lazyLoadEvent);
-    });
-  }, 100);
+  const scrollHandler = throttle(loadVisibleImages, 100);
   window.addEventListener('scroll', scrollHandler);
+
+  // Return a function to allow manual checks for images to lazy load.
+  return loadVisibleImages;
 };
 
 /**
  * The public function to initialize lazyloading
  * @param  {Object} config configuration options (see `initialize()`)
- * @return {Boolean}       `true` if initialized; `false` if not
+ * @return {Function}      a function to manually check for images to lazy load
  */
 export function lazyLoadImages(config = {}) {
   // If we have `srcset` support, initialize the lazyloader.
   if ('srcset' in document.createElement('img')) {
-    initialize(config);
+    return initialize(config);
   }
 }
 
