@@ -9,7 +9,7 @@ notifications:
 node_js:
   - '7'
   - '6'
-  - '4'
+  - '5'
 before_script:
   - npm prune
   - npm run scripts && npm run styles

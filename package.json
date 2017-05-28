@@ -1,5 +1,8 @@
 {
   "name": "responsive-lazyload",
+  "engines": {
+    "node": ">=5.x.x"
+  },
   "version": "0.0.0-development",
   "description": "A tool to lazyload images in a responsive, lightweight way (with fallbacks for unsupported browsers).",
   "main": "dist/responsive-lazyload.min.js",
@@ -42,7 +45,10 @@
     "html5",
     "lazyload-images"
   ],
-  "author": "Jason Lengstorf <jason@lengstorf.com> (@jlengstorf)",
+  "contributors": [
+    "Jason Lengstorf <jason@lengstorf.com> (https://lengstorf.com)",
+    "Harris Thompson <harris@harrisjt.com> (http://harrisjt.com)"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jlengstorf/responsive-lazyload.js/issues"
