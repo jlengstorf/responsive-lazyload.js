@@ -22,6 +22,15 @@ describe('enables lazy loading of images', () => {
                             images/example.jpg 690w,
                             images/example@2x.jpg 1380w">
       </div>
+      <img id="unwrapped-image"
+           class="js--lazyload"
+           alt="image description"
+           src="images/example2@2x.jpg"
+           srcset="${gif}"
+           data-lazyload="images/example2-300x150.jpg 300w,
+                          images/example2-600x300.jpg 600w,
+                          images/example2.jpg 690w,
+                          images/example2@2x.jpg 1380w">
       <div id="loaded-container-with-nesting" class="js--lazyload">
         <a href="https://code.lengstorf.com/">
           <img id="with-link"
@@ -61,9 +70,37 @@ describe('enables lazy loading of images', () => {
     image = false;
   });
 
-  describe('loads all on-screen images', () => {
+  describe('loads visible images in wrappers', () => {
     beforeEach(() => {
       image = document.querySelector('#will-load');
+    });
+
+    test('sets the `data-loaded` attribute to "true"', () => {
+      expect(image.getAttribute('data-loaded')).toBe('true');
+    });
+
+    test('sets the `srcset` attribute with the images', () => {
+      expect(image.srcset).toEqual(image.getAttribute('data-lazyload'));
+    });
+  });
+
+  describe('loads visible images NOT in wrappers', () => {
+    beforeEach(() => {
+      image = document.querySelector('#unwrapped-image');
+    });
+
+    test('sets the `data-loaded` attribute to "true"', () => {
+      expect(image.getAttribute('data-loaded')).toBe('true');
+    });
+
+    test('sets the `srcset` attribute with the images', () => {
+      expect(image.srcset).toEqual(image.getAttribute('data-lazyload'));
+    });
+  });
+
+  describe('loads visible nested deeply images in wrappers', () => {
+    beforeEach(() => {
+      image = document.querySelector('#with-link');
     });
 
     test('sets the `data-loaded` attribute to "true"', () => {
