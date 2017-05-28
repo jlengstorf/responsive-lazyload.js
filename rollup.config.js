@@ -1,4 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/*
+eslint-disable import/no-extraneous-dependencies
+eslint-disable import/no-unresolved
+*/
 import babel from 'rollup-plugin-babel';
 import closure from 'rollup-plugin-closure-compiler-js';
 
