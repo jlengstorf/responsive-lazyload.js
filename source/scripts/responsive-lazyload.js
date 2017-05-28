@@ -63,14 +63,10 @@ const maybeTriggerImageLoad = (image, event) => {
 
 /**
  * Finds the image to be lazyloaded.
- * @param  {Element} container `img` element to be lazyloaded or its container
- * @return {Element}           the `img` element to be lazyloaded
+ * @param  {Element} el `img` element to be lazyloaded or its container
+ * @return {Element}    the `img` element to be lazyloaded
  */
-const findImageElement = (container) => {
-  const tag = container.tagName.toLowerCase();
-
-  return tag === 'img' ? container : container.querySelector('img');
-};
+const findImageElement = el =>  el.tagName.toLowerCase() === 'img' ? el : el.querySelector('img');
 
 /**
  * This almost seems too easy, but we simply swap in the correct srcset.
