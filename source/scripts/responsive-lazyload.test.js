@@ -9,6 +9,19 @@ const gif = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABA
 // This feels hacky, but allows us to DRY out the test code a bit.
 let image = false;
 
+/*
+ * jsdom _always_ returns null, which indicates that elements are visually hidden and causes all of
+ * our tests to fail. To work around this, we overwrite the `offsetParent` property to always return
+ * true. It’s a hack, but rewriting all the tests with a new framework sounds terrible.
+ *
+ * jsdom changelog: https://github.com/tmpvar/jsdom/blob/master/Changelog.md#9110
+ * Workaround idea: https://github.com/facebook/jest/issues/890#issuecomment-209698782
+ */
+Object.defineProperty(HTMLElement.prototype, 'offsetParent', {
+  writable: true,
+  value: true,
+});
+
 describe('enables lazy loading of images', () => {
   beforeEach(() => {
     document.body.innerHTML = `
@@ -98,7 +111,7 @@ describe('enables lazy loading of images', () => {
     });
   });
 
-  describe('loads visible nested deeply images in wrappers', () => {
+  describe('loads visible images nested deeply in wrappers', () => {
     beforeEach(() => {
       image = document.querySelector('#with-link');
     });
@@ -145,8 +158,8 @@ describe('enables lazy loading of images', () => {
     });
   });
 
-  describe('loads an image once it enters the viewport', () => {
-    test('', (done) => {
+  describe('when the page scrolls', () => {
+    test('loads an image once it enters the viewport', (done) => {
       const imageToLoad = document.querySelector('#will-not-load');
 
       // We want to simulate scrolling into the viewport, so we overwrite this.
