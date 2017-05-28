@@ -1,14 +1,29 @@
+dist: trusty
+sudo: false
+cache:
+  directories:
+  - node_modules
 language: node_js
 node_js:
-  - node
-  - 6
-  - 5
+- node
+- 6
+- 5
+branches:
+  only:
+  - master
 addons:
   code_climate:
     repo_token: 1d359c8ec322c5371b0e4785740b1bbf21e5b7d61e836078077c87cd730ec017
+notifications:
+  email: false
 before_script:
-  - npm run scripts && npm run styles
+- npm prune
+- npm run scripts && npm run styles
 after_success:
-  - npm run test:coverage
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < coverage/lcov.info
+- npm run semantic-release --silent
+- npm install -g codeclimate-test-reporter
+- codeclimate-test-reporter < coverage/lcov.info
+env:
+  global:
+  - secure: zFoVDxL61zehXMRUO97oH4hlMDMPpOjh9ocRyBzuKQScIHbz/EwoCW7TKaim3JwsdZ9aR2HHSH8UayBgTqI2oOkbYBzashTbBLbvkLNBwE3fzDiwOKeSIxVeJgLJyq/+Mmf7ShMVq2YWt3rjpMaY7s9Tr/NXYbq2RoVPgSS1PE7Vf0x/LD0vodUEHbIb2vPchM8I6zfmXugSlyYJoy1ecpE8gUv2ufstnzGmxVuLmjjZUqGuewVoqbwiW9bQEOhPhoEUkT8Gu3kOX1nqsGDzahH2sVhklq2QYD1tVfNbJql3ZdtfHx1BMmT3fXCrgXqcbK0UnEoBL1Id/g4gsQay89G1OPJwtBZ6TcIgpu9uoKS55cW2q1CJOvL5sEfcAMOESxTlQsndQR/z0xrPLkAyiR03l6UaO9xO95h6lx+Av1dPNytjPPhdG9ZxBEB6YrjlaeVVlRxYh+srTiOoLxJ1WZDcfeC+x14spM9wVQLWwnNrPRAmWHooOmLLdi2YZrL/b/wgj1K2dfD1yN5c6ffZ0tj5HLe6/U1fzwg77prwaJo1UOyFWSPz9DZZWZM6FlJJJ9zioiJF/d94AoUqEfgUz53kQuQKIojh5YTaF2eBKcEBK27iDo5/F491CzChRwFBw2oFOjTjsmlnVflp2WWTgjUVWBh5tE+x4RFRQBL7Mlw=
+  - secure: rTyhm5DdIfgX5qVYar321uMyS7MQLBYEwtLhtvxixXGCZqd1HItajzPA2/9c8qm71SWPGjp54VWtcplYjtpKlFLbxPIrTUpHHX6ngCKPrz9gI0eSF2eONrEWbzXWt33Qwo0joWAGvyH/mtBYN3pCxae5VkX65bnkf6zrOY2lcsMNDIMhnlxLay6G1JVgAyF5/odWJhp1S/6+HhATCs/iePCC4iQ04uDz70gT/Dm8zSArEo6qTAEkBuQD0v+iaofS0zGHzgKXkpCFKkdDP9JPizBxeoRt61ry5UdUqU+RAyJpIphgTiiC5ixhnTNjvMpOnOlhpVbDrHWOd3kGyXM2F8S6UFY8Hhen7db3zdnkIQxDuVShwcWX0rkGYB/hrWtfmJRh59Udk1p97x3/bEiOp78Bo+WWn3GJncfX++dag657UCV8aNl9EckFRPVsr3euxQFgli4IaQcmG+ORoTyauaJV8uCtKPuARfUp95GBDq2fUhskzvZfopkHwNgJmBuvPq9aJIFsUoX7wW5ecfN2T8/tnyo833/5jWmzoAS150jkopRLqurZrkG6J9OrKSb1XeDYXoKQdSOKEntAzgnIK6yHfciopgPaPNlvWwy+CEf+e8O6Z6sX/rqLXpbHIF4IdyhY+tAqessTa+2oFvLOh4sFg2BMGa+hCtU5ZnOI4Lk=

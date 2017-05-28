@@ -2,7 +2,10 @@
   "name": "responsive-lazyload",
   "version": "1.0.2",
   "description": "A tool to lazyload images in a responsive, lightweight way (with fallbacks for unsupported browsers).",
-  "main": "source/scripts/responsive-lazyload.js",
+  "main": "dist/responsive-lazyload.min.js",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "test": "npm run test:lint --silent && npm run test:jest --silent",
     "test:jest": "jest --coverage",
@@ -16,11 +19,14 @@
     "styles": "cssmin source/styles/responsive-lazyload.css > dist/responsive-lazyload.min.css",
     "styles:watch": "watch 'npm run styles' source/styles/",
     "pages": "git checkout gh-pages && git merge master && git push && git checkout master",
-    "preversion": "NODE_ENV=production npm run build && git add -A",
-    "postversion": "git push && git push --tags && npm run pages",
+    "__OLD__preversion": "NODE_ENV=production npm run build && git add -A",
+    "__OLD__postversion": "git push && git push --tags && npm run pages",
     "example": "del docs/dist/ && mkdir docs/dist/ && cp dist/* docs/dist/",
     "prebuild": "npm test --silent",
-    "build": "npm run scripts && npm run styles && npm run example"
+    "build": "npm run scripts && npm run styles && npm run example",
+    "semantic-release": "semantic-release pre && npm run build && npm publish && semantic-release post",
+    "commit": "npm test && git-cz",
+    "commitmsg": "validate-commit-msg"
   },
   "repository": {
     "type": "git",
@@ -47,18 +53,28 @@
     "babel-loader": "^6.2.4",
     "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.9.0",
+    "commitizen": "^2.9.6",
     "coveralls": "^2.11.16",
     "cssmin": "^0.4.3",
+    "cz-conventional-changelog": "^2.0.0",
     "del-cli": "^0.2.1",
     "eslint": "^3.15.0",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.2.0",
     "expose-loader": "^0.7.1",
+    "husky": "^0.13.3",
     "jest": "^18.1.0",
     "live-reload": "^1.1.0",
     "mocha-lcov-reporter": "^1.2.0",
     "parallelshell": "^2.0.0",
+    "semantic-release": "^6.3.6",
+    "validate-commit-msg": "^2.12.1",
     "watch": "^1.0.1",
     "webpack": "^2.2.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
