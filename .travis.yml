@@ -9,9 +9,13 @@ branches:
 addons:
   code_climate:
     repo_token: 1d359c8ec322c5371b0e4785740b1bbf21e5b7d61e836078077c87cd730ec017
+notifications:
+  email: false
 before_script:
+  - npm prune
   - npm run scripts && npm run styles
 after_success:
+  - npm run semantic-release
   - npm run test:coverage
   - npm install -g codeclimate-test-reporter
   - codeclimate-test-reporter < coverage/lcov.info
