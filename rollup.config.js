@@ -1,9 +1,5 @@
-/*
-eslint-disable import/no-extraneous-dependencies
-eslint-disable import/no-unresolved
-*/
-import babel from 'rollup-plugin-babel';
-import closure from 'rollup-plugin-closure-compiler-js';
+import babel from 'rollup-plugin-babel'; // eslint-disable-line
+import closure from 'rollup-plugin-closure-compiler-js'; //eslint-disable-line
 
 export default {
   entry: 'source/scripts/responsive-lazyload.js',
