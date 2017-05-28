@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import babel from 'rollup-plugin-babel';
 import closure from 'rollup-plugin-closure-compiler-js';
 
@@ -12,7 +13,7 @@ export default {
     babel({
       exclude: 'node_modules/**',
       babelrc: false,
-      presets: [ ["es2015", { "modules": false }] ],
+      presets: [['es2015', { modules: false }]],
     }),
     closure(),
   ],
