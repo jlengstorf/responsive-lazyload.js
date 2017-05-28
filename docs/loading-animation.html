@@ -134,7 +134,7 @@
 
     <pre>&#x3C;script src=&#x22;path/to/bower_components/responsive-lazyload/dist/responsive-lazyload.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
 &#x3C;script&#x3E;
-  responsiveLazyload.lazyLoadImages();
+  responsiveLazyload();
 &#x3C;/script&#x3E;</pre>
 
     <h2>Use with <code>figure</code> elements and other wrappers.</h2>
@@ -274,7 +274,7 @@
     </p>
     <p>
       To make this happen, pass a callback to the JS function that shows or hides elements that is
-      the return value from <code>lazyLoadImages()</code>:
+      the return value from <code>responsiveLazyload()</code>:
     </p>
     <pre>&lt;script&gt;
     /*
@@ -282,7 +282,7 @@
      * to force a check for new images. This is useful when
      * images are shown/hidden by JavaScript.
      */
-    var loadVisibleImages = responsiveLazyload.lazyLoadImages();
+    var loadVisibleImages = responsiveLazyload();
 
     // THIS JS FOR THE DEMO ONLY
     window.initTabs({
@@ -310,13 +310,13 @@
   <!-- This example script initializes the tabbed example -->
   <script src="js/example-only.js"></script>
 
-  <script src="dist/responsive-lazyload.es2015.js"></script>
+  <script src="dist/responsive-lazyload.umd.js"></script>
   <script>
     /*
      * The initialization returns a function that we can call to force a check for new images. This
      * is useful when images are shown/hidden by JavaScript.
      */
-    var loadVisibleImages = responsiveLazyload.lazyLoadImages();
+    var loadVisibleImages = responsiveLazyload();
 
     // THIS JS FOR THE DEMO ONLY
     window.initTabs({
