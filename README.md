@@ -23,7 +23,11 @@ npm install --save responsive-lazyload
 Load the module and initialize lazyloading in your app's script:
 
 ```js
+<<<<<<< HEAD
 import responsiveLazyload from 'responsive-lazyload';
+=======
+import lazyLoadImages from 'responsive-lazyload';
+>>>>>>> fix(package): remove ES module and Closure Compiler for now
 
 responsiveLazyload();
 ```
