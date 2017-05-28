@@ -3,6 +3,9 @@ node_js:
   - node
   - 6
   - 5
+branches:
+  only:
+    - master
 addons:
   code_climate:
     repo_token: 1d359c8ec322c5371b0e4785740b1bbf21e5b7d61e836078077c87cd730ec017
