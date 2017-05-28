@@ -23,9 +23,9 @@ npm install --save responsive-lazyload
 Load the module and initialize lazyloading in your app's script:
 
 ```js
-import { lazyLoadImages } from 'responsive-lazyload';
+import responsiveLazyload from 'responsive-lazyload';
 
-lazyLoadImages();
+responsiveLazyload();
 ```
 
 #### 3. Include the stylesheet.
@@ -82,7 +82,7 @@ The initialization function is stored inside a global object called `responsiveL
 
 ```html
 <script>
-  responsiveLazyload.lazyLoadImages();
+  responsiveLazyload();
 </script>
 ```
 
@@ -120,11 +120,11 @@ The markup to implement this is:
 
 ### Markup Details
 
-- The classes can be changed, but must be updated in the call to `lazyLoadImages()`.
+- The classes can be changed, but must be updated in the call to `responsiveLazyload()`.
 - The initial `srcset` is a blank GIF, which avoids an unnecessary HTTP request.
 - The _actual_ `srcset` is added as `data-lazyload`.
 
-The way `lazyLoadImages()` works is to check if the image is inside the viewport, and — if so — swap out the `srcset` for the `data-lazyload`. This is much simpler than duplicating browser behavior to choose the optimal image size; instead, we just give the browser a `srcset` and let it do its thing.
+The way `responsiveLazyload()` works is to check if the image is inside the viewport, and — if so — swap out the `srcset` for the `data-lazyload`. This is much simpler than duplicating browser behavior to choose the optimal image size; instead, we just give the browser a `srcset` and let it do its thing.
 
 On browsers that don’t support `srcset`, the regular `src` attribute is used, so this should degrade gracefully.
 
@@ -157,9 +157,9 @@ To ensure that an image is still visible, even if JavaScript is disabled, add a 
 To enable lazyloading, add the following to your initialization script:
 
 ```js
-import { lazyLoadImages } from './utils/lazyload-images';
+import responsiveLazyload from 'responsive-lazyload';
 
-lazyLoadImages({
+responsiveLazyload({
     containerClass: 'js--lazyload',
     loadingClass: 'js--lazyload--loading',
     callback: () => {},

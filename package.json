@@ -6,7 +6,6 @@
   "version": "1.0.3",
   "description": "A tool to lazyload images in a responsive, lightweight way (with fallbacks for unsupported browsers).",
   "main": "dist/responsive-lazyload.umd.js",
-  "module": "dist/responsive-lazyload.es2015.js",
   "files": [
     "dist/"
   ],
@@ -18,7 +17,7 @@
     "prescripts": "del dist/**/*{.js,.map}",
     "scripts:es2015": "rollup -c",
     "scripts:umd": "rollup -c rollup.config.node.js",
-    "scripts": "npm run scripts:es2015 && npm run scripts:umd",
+    "scripts": "npm run scripts:umd",
     "scripts:watch": "watch 'npm run scripts' source/scripts/",
     "prestyles": "del dist/**/*.css",
     "styles": "cssmin source/styles/responsive-lazyload.css > dist/responsive-lazyload.min.css",
