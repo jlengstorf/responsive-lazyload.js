@@ -166,6 +166,67 @@
       <em>NOTE:</em> This approach causes the content to reflow (unless the image is square) and may cause layout issues since it tries to set the image at 100% of its container width. Use at your own discretion.
     </p>
 
+    <h2>Images That Become Visible From JavaScript Actions</h2>
+
+    <nav class="tabs js--tabs" role="tablist">
+      <a href="#one" id="tab-one" role="tab" aria-selected="true" class="tabs__tab">
+        Panel One
+      </a>
+      <a href="#two" id="tab-two" role="tab" aria-selected="false" class="tabs__tab">
+        Panel Two
+      </a>
+    </nav>
+    <div class="gallery">
+      <div id="one" class="gallery__panel" aria-hidden="false" aria-labelled-by="tab-one">
+        <div class="gallery__image js--lazyload">
+          <img alt="image description"
+              src="images/example05@2x.jpg"
+              srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              data-lazyload="images/example05-300x150.jpg 300w,
+                              images/example05-600x300.jpg 600w,
+                              images/example05.jpg 690w,
+                              images/example05@2x.jpg 1380w">
+        </div>
+      </div>
+      <div id="two" class="gallery__panel" aria-hidden="true" aria-labelled-by="tab-two">
+        <div class="gallery__image js--lazyload">
+          <img alt="image description"
+              src="images/example06@2x.jpg"
+              srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              data-lazyload="images/example06-300x150.jpg 300w,
+                              images/example06-600x300.jpg 600w,
+                              images/example06.jpg 690w,
+                              images/example06@2x.jpg 1380w">
+        </div>
+      </div>
+    </div>
+
+    <p>
+      In some cases, an image may be within the viewport, but not actually be visible (e.g. tabbed
+      interfaces). Not to worry — we’ve handled that as well!
+    </p>
+    <p>
+      To make this happen, pass a callback to the JS function that shows or hides elements that is
+      the return value from <code>lazyLoadImages()</code>:
+    </p>
+    <pre>&lt;script&gt;
+    /*
+     * The initialization returns a function that we can call
+     * to force a check for new images. This is useful when
+     * images are shown/hidden by JavaScript.
+     */
+    var loadVisibleImages = responsiveLazyload.lazyLoadImages();
+
+    // THIS JS FOR THE DEMO ONLY
+    window.initTabs({
+      /*
+       * Whenever a tab changes, check for new images and
+       * lazy load them if necessary.
+       */
+      onChange: loadVisibleImages,
+    });
+&lt;/script&gt;</pre>
+
     <footer>
       <p>
         Built by
@@ -176,12 +237,25 @@
 
   </div>
 
+  <!-- GitHub “Fork Me” badge -->
   <a href="https://github.com/jlengstorf/responsive-lazyload.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
+  <!-- This example script initializes the tabbed example -->
+  <script src="js/example-only.js"></script>
 
   <script src="dist/responsive-lazyload.min.js"></script>
   <script>
-    responsiveLazyload.lazyLoadImages();
+    /*
+     * The initialization returns a function that we can call to force a check for new images. This
+     * is useful when images are shown/hidden by JavaScript.
+     */
+    var loadVisibleImages = responsiveLazyload.lazyLoadImages();
+
+    // THIS JS FOR THE DEMO ONLY
+    window.initTabs({
+      // Whenever a tab changes, check for new images and lazy load them if necessary.
+      onChange: loadVisibleImages,
+    });
   </script>
 </body>
 </html>
