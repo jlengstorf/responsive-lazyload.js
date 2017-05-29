@@ -1,4 +1,65 @@
 <a name="1.0.3"></a>
+## [1.0.3](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.1.3...v1.0.3) (2017-05-29)
+
+
+### Bug Fixes
+
+* **docs:** docs should be added to the release, hopefully ([#14](https://github.com/jlengstorf/responsive-lazyload.js/issues/14)) ([b7c0fc8](https://github.com/jlengstorf/responsive-lazyload.js/commit/b7c0fc8))
+* **license:** add a copy of the ISC license ([#13](https://github.com/jlengstorf/responsive-lazyload.js/issues/13)) ([a0178e2](https://github.com/jlengstorf/responsive-lazyload.js/commit/a0178e2))
+
+
+
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.1.2...v1.1.3) (2017-05-29)
+
+
+### Bug Fixes
+
+* **npm:** update build process to fix docs build ([#11](https://github.com/jlengstorf/responsive-lazyload.js/issues/11)) ([c74eaae](https://github.com/jlengstorf/responsive-lazyload.js/commit/c74eaae))
+
+
+
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.1.1...v1.1.2) (2017-05-28)
+
+
+### Bug Fixes
+
+* **package:** remove ES module and Closure Compiler for now ([#9](https://github.com/jlengstorf/responsive-lazyload.js/issues/9)) ([95e73d1](https://github.com/jlengstorf/responsive-lazyload.js/commit/95e73d1))
+
+
+
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.1.0...v1.1.1) (2017-05-28)
+
+
+### Bug Fixes
+
+* **npm:** fix bad paths for main and module fields ([#8](https://github.com/jlengstorf/responsive-lazyload.js/issues/8)) ([6967722](https://github.com/jlengstorf/responsive-lazyload.js/commit/6967722))
+
+
+
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.0.4...v1.1.0) (2017-05-28)
+
+
+### Features
+
+* **rollup:** move to Rollup ([#7](https://github.com/jlengstorf/responsive-lazyload.js/issues/7)) ([65b9e05](https://github.com/jlengstorf/responsive-lazyload.js/commit/65b9e05))
+
+
+
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.0.3...v1.0.4) (2017-05-28)
+
+
+### Bug Fixes
+
+* **img:** improve img selection function ([#6](https://github.com/jlengstorf/responsive-lazyload.js/issues/6)) ([0b215ab](https://github.com/jlengstorf/responsive-lazyload.js/commit/0b215ab))
+
+
+
+<a name="1.0.3"></a>
 ## [1.0.3](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.0.2...v1.0.3) (2017-05-28)
 
 
