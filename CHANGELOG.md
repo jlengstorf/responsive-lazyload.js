@@ -1,5 +1,10 @@
-<a name="1.0.3"></a>
-## [1.0.3](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.1.3...v1.0.3) (2017-05-29)
+<a name="1.1.5"></a>
+## [1.1.5](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.1.4...v1.1.5) (2017-05-29)
+
+
+
+<a name="1.1.4"></a>
+## [1.1.4](https://github.com/jlengstorf/responsive-lazyload.js/compare/v1.1.3...v1.1.4) (2017-05-29)
 
 
 ### Bug Fixes
