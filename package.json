@@ -23,9 +23,9 @@
     "styles": "cssmin source/styles/responsive-lazyload.css > dist/responsive-lazyload.min.css",
     "styles:watch": "watch 'npm run styles' source/styles/",
     "pages": "git checkout gh-pages && git merge master && git push && git checkout master",
-    "example": "del docs/dist/ && mkdir docs/dist/ && cp dist/* docs/dist/",
+    "example": "del docs/dist/ && mkdir docs/dist/ && cp dist/* docs/dist/ && ls dist/ && ls docs/dist/",
     "prebuild": "npm test --silent",
-    "build": "npm run scripts && npm run styles && npm run example",
+    "build": "npm run styles && npm run scripts && npm run example",
     "semantic-release": "semantic-release pre && npm run build && npm publish && semantic-release post",
     "commit": "npm test && git-cz",
     "commitmsg": "validate-commit-msg"
