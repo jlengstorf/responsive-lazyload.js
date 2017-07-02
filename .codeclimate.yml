@@ -2,7 +2,6 @@
 engines:
   eslint:
     enabled: true
-    channel: eslint-2
     exclude_fingerprints:
     - 31f7086219bda8adf6926f08dafb533e
   fixme:
@@ -13,3 +12,4 @@ ratings:
 exclude_paths:
 - coverage/**/*
 - node_modules/**/*
+- docs/dist/**/*

@@ -4,7 +4,8 @@ import lazyLoadImages from './responsive-lazyload';
 const loadEvent = new Event('load');
 const scrollEvent = new Event('scroll');
 
-const gif = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+const gif =
+  'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
 // This feels hacky, but allows us to DRY out the test code a bit.
 let image = false;
@@ -152,14 +153,16 @@ describe('enables lazy loading of images', () => {
     });
 
     test('removes the loading class from a container with nesting', () => {
-      const container = document.querySelector('#loaded-container-with-nesting');
+      const container = document.querySelector(
+        '#loaded-container-with-nesting'
+      );
       container.querySelector('img').dispatchEvent(loadEvent);
       expect(container.classList.contains('js--lazyload--loading')).toBe(false);
     });
   });
 
   describe('when the page scrolls', () => {
-    test('loads an image once it enters the viewport', (done) => {
+    test('loads an image once it enters the viewport', done => {
       const imageToLoad = document.querySelector('#will-not-load');
 
       // We want to simulate scrolling into the viewport, so we overwrite this.

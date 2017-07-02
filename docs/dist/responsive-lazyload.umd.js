@@ -22,7 +22,8 @@ function isElementVisible(el) {
 
   // Check if any part of the element is vertically within the viewport.
   var position = el.getBoundingClientRect();
-  var wH = window.innerHeight || /* istanbul ignore next */document.documentElement.clientHeight;
+  var wH = window.innerHeight ||
+  /* istanbul ignore next */document.documentElement.clientHeight;
   var isWithinViewport = position.top >= 0 && position.top <= wH || position.bottom >= 0 && position.bottom <= wH;
 
   return isCurrentlyVisible && isWithinViewport;
@@ -205,7 +206,9 @@ function lazyLoadImages() {
 
   // If there’s no support, return a no-op.
   /* istanbul ignore next: unreasonable to test browser support just for a no-op */
-  return function () {/* no-op */};
+  return function () {
+    /* no-op */
+  };
 }
 
 return lazyLoadImages;

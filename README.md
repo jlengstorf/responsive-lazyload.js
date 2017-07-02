@@ -53,27 +53,25 @@ Place the lazyload markup anywhere in your app's markup:
 
 For more information and configuration options, see [the examples](https://jlengstorf.github.io/responsive-lazyload.js/).
 
-### Option 2: Manual Download
+### Option 2: Using unpkg
 
-#### 1. Download the latest release.
+**NOTE:** While unpkg is a fantastic tool, adding additional HTTP requests to your project will slow it down. For that reason, this approach is not recommended.
 
-Download the [latest release of responsive-lazyload.js from GitHub](https://github.com/jlengstorf/responsive-lazyload.js/releases). Extract the files and place them inside your project (e.g. inside a `vendor/` directory).
-
-#### 2. Include the script in your markup.
+#### 1. Include the script in your markup.
 
 Just before the closing `</body>` tag, add the lazyloading script:
 
 ```html
-<script src="/vendor/responsive-lazyload.js/dist/responsive-lazyload.min.js"></script>
+<script src="https://unpkg.com/responsive-lazyload/dist/responsive-lazyload.umd.js" defer></script>
 ```
 
-#### 3. Include the styles in your markup.
+#### 2. Include the styles in your markup.
 
 Include the following in the `<head>` of your document:
 
 ```html
 <link rel="stylesheet" 
-      href="/vendor/responsive-lazyload.js/dist/responsive-lazyload.min.css">
+      href="https://unpkg.com/responsive-lazyload/dist/responsive-lazyload.min.css">
 ```
 
 #### 3. Initialize lazyloading.
