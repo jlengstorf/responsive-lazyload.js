@@ -1,5 +1,5 @@
 import babel from 'rollup-plugin-babel';
-import babelrc from 'babelrc-rollup'; // eslint-disable-line import/extensions
+import babelrc from 'babelrc-rollup';
 
 import pkg from './package.json';
 
