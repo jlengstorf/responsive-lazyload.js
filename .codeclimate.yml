@@ -12,3 +12,4 @@ ratings:
 exclude_paths:
 - coverage/**/*
 - node_modules/**/*
+- docs/dist/**/*
