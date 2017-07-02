@@ -1,10 +1,9 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('babel-polyfill')) :
-	typeof define === 'function' && define.amd ? define(['babel-polyfill'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
 	(global.responsiveLazyload = factory());
 }(this, (function () { 'use strict';
 
-// Babel’s env preset will only load the polyfills we need.
 /**
  * Check if an element is visible at all in the viewport.
  *

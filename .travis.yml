@@ -2,6 +2,7 @@ dist: trusty
 sudo: false
 language: node_js
 cache:
+  yarn: true
   directories:
     - node_modules
 notifications:
@@ -12,7 +13,6 @@ node_js:
   - '6'
   - '5'
 before_script:
-  - npm prune
   - npm run scripts && npm run styles
 after_success:
   - npm run semantic-release

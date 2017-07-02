@@ -1,6 +1,3 @@
-import 'babel-polyfill';
-
-// Babel’s env preset will only load the polyfills we need.
 /**
  * Check if an element is visible at all in the viewport.
  *
