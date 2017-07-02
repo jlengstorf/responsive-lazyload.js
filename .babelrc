@@ -1,3 +1,13 @@
 {
-  "presets": [ "env" ]
+  "presets": [
+    "es2015",
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "> 1%", "IE 11"]
+        }
+      }
+    ]
+  ]
 }

@@ -1,16 +1,31 @@
-import babel from 'rollup-plugin-babel'; // eslint-disable-line
+import babel from 'rollup-plugin-babel';
+import babelrc from 'babelrc-rollup'; // eslint-disable-line import/extensions
+
+import pkg from './package.json';
+
+const external = Object.keys(pkg.dependencies);
 
 export default {
   entry: 'source/scripts/responsive-lazyload.js',
-  dest: 'dist/responsive-lazyload.es2015.js',
-  moduleName: 'responsiveLazyload',
-  format: 'iife',
-  sourceMap: true,
   plugins: [
-    babel({
-      exclude: 'node_modules/**',
-      babelrc: false,
-      presets: [['es2015', { modules: false }]],
-    }),
+    babel(
+      babelrc({
+        addExternalHelpersPlugin: false,
+      })
+    ),
   ],
+  targets: [
+    {
+      dest: pkg.main,
+      format: 'umd',
+      moduleName: 'responsiveLazyload',
+      sourceMap: true,
+    },
+    {
+      dest: pkg.module,
+      format: 'es',
+      sourceMap: true,
+    },
+  ],
+  external,
 };

@@ -1,9 +1,10 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('babel-polyfill')) :
+	typeof define === 'function' && define.amd ? define(['babel-polyfill'], factory) :
 	(global.responsiveLazyload = factory());
 }(this, (function () { 'use strict';
 
+// Babel’s env preset will only load the polyfills we need.
 /**
  * Check if an element is visible at all in the viewport.
  *
@@ -22,7 +23,8 @@ function isElementVisible(el) {
 
   // Check if any part of the element is vertically within the viewport.
   var position = el.getBoundingClientRect();
-  var wH = window.innerHeight || /* istanbul ignore next */document.documentElement.clientHeight;
+  var wH = window.innerHeight ||
+  /* istanbul ignore next */document.documentElement.clientHeight;
   var isWithinViewport = position.top >= 0 && position.top <= wH || position.bottom >= 0 && position.bottom <= wH;
 
   return isCurrentlyVisible && isWithinViewport;
@@ -205,7 +207,9 @@ function lazyLoadImages() {
 
   // If there’s no support, return a no-op.
   /* istanbul ignore next: unreasonable to test browser support just for a no-op */
-  return function () {/* no-op */};
+  return function () {
+    /* no-op */
+  };
 }
 
 return lazyLoadImages;
