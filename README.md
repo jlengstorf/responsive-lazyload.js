@@ -6,7 +6,7 @@ This package was inspired by <https://github.com/ivopetkov/responsively-lazy/>. 
 
 ## Quick Start
 
-Check out [the examples](https://code.lengstorf.com/responsive-lazyload.js/) for copy-pasteable code and more information about usage.
+Check out [the examples](https://git.io/lazyload) for copy-pasteable code and more information about usage.
 
 ### Option 1: Using a Build Tool
 
